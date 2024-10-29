@@ -99,7 +99,11 @@
                                         @foreach (var materia in ViewBag.ListaMaterias)
                                         {
                                             <tr>
-                                                <td>@materia.Nombre</td>
+                                                <td>
+                                                    <a href="#" onclick="mostrarNotas(@materia.MateriaID, '@materia.Nombre')" class="materia-link">
+                                                        @materia.Nombre
+                                                    </a>
+                                                </td>
                                                 <td>@materia.Descripcion</td>
                                                 <td>@materia.Profesor.NombreyApellido</td>
                                             </tr>
@@ -109,6 +113,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <!-- Alumnos -->
                     <div class="tab-content" id="alumnosContent">
@@ -141,15 +146,29 @@
                     </div>
 
                     <!-- Notas -->
+                    <!-- Notas -->
                     <div class="tab-content" id="notasContent">
                         <div class="card">
                             <div class="card-header">
                                 <h2>Notas</h2>
+                                <!-- Agregamos la leyenda de semaforización -->
+                                <div class="inline-legend">
+                                    <span class="legend-item">
+                                        <span class="status-dot status-green"></span>Aprobado (6-10)
+                                    </span>
+                                    <span class="legend-item">
+                                        <span class="status-dot status-yellow"></span>Regular (4-5)
+                                    </span>
+                                    <span class="legend-item">
+                                        <span class="status-dot status-red"></span>Desaprobado (1-3)
+                                    </span>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <table>
                                     <thead>
                                         <tr>
+                                            <th>Estado</th>
                                             <th>Alumno</th>
                                             <th>Materia</th>
                                             <th>Nota</th>
@@ -160,6 +179,18 @@
                                         @foreach (var nota in ViewBag.ListaNotas)
                                         {
                                             <tr>
+                                                <td>
+                                                    <div class="estado-cell">
+                                                        @{
+                                                            string statusClass = nota.Valor >= 6 ? "status-green" :
+                                                                               nota.Valor >= 4 ? "status-yellow" : "status-red";
+                                                            string estadoText = nota.Valor >= 6 ? "Aprobado" :
+                                                                              nota.Valor >= 4 ? "Regular" : "Desaprobado";
+                                                        }
+                                                        <span class="status-dot @statusClass"></span>
+                                                        @estadoText
+                                                    </div>
+                                                </td>
                                                 <td>@nota.Alumno.NombreyApellido</td>
                                                 <td>@nota.Materia.Nombre</td>
                                                 <td>@nota.Valor</td>
@@ -225,5 +256,28 @@
             </div>
         </div>
     </div>
+    <script>
+        function mostrarNotas(materiaId, nombreMateria) {
+            // Cambiar a la pestaña de notas
+            document.getElementById('tab4').checked = true;
+
+            // Filtrar la tabla de notas
+            var tabla = document.querySelector('#notasContent table tbody');
+            var filas = tabla.getElementsByTagName('tr');
+
+            for (var i = 0; i < filas.length; i++) {
+                var materiaCell = filas[i].cells[2]; // columna de materia (ahora es la tercera columna)
+                if (materiaCell.textContent === nombreMateria) {
+                    filas[i].style.display = '';
+                } else {
+                    filas[i].style.display = 'none';
+                }
+            }
+
+            // Actualizar título
+            document.querySelector('#notasContent .card-header h2').textContent =
+                'Notas - ' + nombreMateria;
+        }
+    </script>
 </body>
 </html>

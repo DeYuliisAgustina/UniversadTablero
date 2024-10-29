@@ -337,7 +337,5 @@ namespace UniversadTablero.Controllers
             }
             return lista;
         }
-
-
     }
 }
