@@ -147,12 +147,13 @@
 
                     <!-- Notas -->
                     <!-- Notas -->
+                    <!-- Notas -->
                     <div class="tab-content" id="notasContent">
                         <div class="card">
                             <div class="card-header">
                                 <h2>Notas</h2>
-                                <!-- Agregamos la leyenda de semaforización -->
-                                <div class="inline-legend">
+                                <!-- Leyenda oculta inicialmente -->
+                                <div class="inline-legend" id="legendaNotas" style="display: none;">
                                     <span class="legend-item">
                                         <span class="status-dot status-green"></span>Aprobado (6-10)
                                     </span>
@@ -168,7 +169,8 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Estado</th>
+                                            <!-- Columna estado oculta inicialmente -->
+                                            <th class="estado-column" style="display: none;">Estado</th>
                                             <th>Alumno</th>
                                             <th>Materia</th>
                                             <th>Nota</th>
@@ -179,7 +181,8 @@
                                         @foreach (var nota in ViewBag.ListaNotas)
                                         {
                                             <tr>
-                                                <td>
+                                                <!-- Celda estado oculta inicialmente -->
+                                                <td class="estado-column" style="display: none;">
                                                     <div class="estado-cell">
                                                         @{
                                                             string statusClass = nota.Valor >= 6 ? "status-green" :
@@ -194,7 +197,7 @@
                                                 <td>@nota.Alumno.NombreyApellido</td>
                                                 <td>@nota.Materia.Nombre</td>
                                                 <td>@nota.Valor</td>
-                                                <td>@nota.Fecha</td>
+                                                <td>@nota.Fecha.ToString("dd/MM/yyyy")</td>
                                             </tr>
                                         }
                                     </tbody>
@@ -261,6 +264,13 @@
             // Cambiar a la pestaña de notas
             document.getElementById('tab4').checked = true;
 
+            // Mostrar la leyenda y columna estado
+            document.getElementById('legendaNotas').style.display = 'flex';
+            var estadoColumns = document.getElementsByClassName('estado-column');
+            for (var i = 0; i < estadoColumns.length; i++) {
+                estadoColumns[i].style.display = '';
+            }
+
             // Filtrar la tabla de notas
             var tabla = document.querySelector('#notasContent table tbody');
             var filas = tabla.getElementsByTagName('tr');
@@ -278,6 +288,41 @@
             document.querySelector('#notasContent .card-header h2').textContent =
                 'Notas - ' + nombreMateria;
         }
+
+        // Función para resetear la vista de notas cuando se cambia de pestaña
+        function resetNotas() {
+            // Ocultar la leyenda y columna estado
+            document.getElementById('legendaNotas').style.display = 'none';
+            var estadoColumns = document.getElementsByClassName('estado-column');
+            for (var i = 0; i < estadoColumns.length; i++) {
+                estadoColumns[i].style.display = 'none';
+            }
+
+            // Mostrar todas las filas
+            var tabla = document.querySelector('#notasContent table tbody');
+            var filas = tabla.getElementsByTagName('tr');
+            for (var i = 0; i < filas.length; i++) {
+                filas[i].style.display = '';
+            }
+
+            // Resetear título
+            document.querySelector('#notasContent .card-header h2').textContent = 'Notas';
+        }
+        // Agregar al final de tu script
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtener todos los radio buttons de tabs
+            var tabs = document.querySelectorAll('input[name="tabs"]');
+
+            // Agregar event listener a cada tab
+            tabs.forEach(function (tab) {
+                tab.addEventListener('change', function () {
+                    // Si no es el tab de notas, resetear la vista
+                    if (this.id !== 'tab4') {
+                        resetNotas();
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
