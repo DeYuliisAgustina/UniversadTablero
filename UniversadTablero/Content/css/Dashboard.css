@@ -222,6 +222,27 @@ tr:hover td {
     align-items: center;
     gap: 0.5rem;
 }
+/* Estilos para el botón de cerrar sesión */
+.logout-button {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #ff3b3b;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .logout-button:hover {
+        background-color: #cc3232;
+    }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 /* Responsive */
 @media (max-width: 768px) {

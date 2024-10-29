@@ -42,6 +42,13 @@ namespace UniversadTablero.Controllers
             return View();
         }
 
+        //cerrar sesion
+        public ActionResult Logout()
+        {
+            Session["usuario"] = null;
+            return RedirectToAction("Login", "Acceso");
+        }
+
         [HttpPost]
         public ActionResult Registrar(Usuario oUsuario)
         {
@@ -56,7 +63,7 @@ namespace UniversadTablero.Controllers
             else
             {
                 ViewData["Mensaje"] = "Las contraseñas no coinciden";
-                return View();
+                return View("Login");
             }
 
             using (SqlConnection cn = new SqlConnection(cadenaConexion))

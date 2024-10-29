@@ -16,8 +16,14 @@
         <div class="container">
             <!-- Header -->
             <div class="header">
-                <h1>Dashboard Universitario</h1>
-                <p>Sistema de gestión académica</p>
+                <div>
+                    <h1>Dashboard Universitario</h1>
+                    <p>Sistema de gestión académica</p>
+                </div>
+                <form method="post" action="~/Acceso/Logout">
+                    <!-- Ajusta la acción según tu ruta de cierre de sesión -->
+                    <button type="submit" class="logout-button">Cerrar Sesión</button>
+                </form>
             </div>
 
             <!-- Tabs Container - Nueva estructura -->
@@ -198,8 +204,9 @@
                                         {
                                             <tr>
                                                 <td>
-                                                    <div class="estado-cell"> <!--la clase status-dot sirve para darle color al estado--> 
-                                                        <span class="status-dot @(inscripcion.Estado == "Aprobado" ? "status-green" : 
+                                                    <div class="estado-cell">
+                                                        <!--la clase status-dot sirve para darle color al estado-->
+                                                        <span class="status-dot @(inscripcion.Estado == "Aprobado" ? "status-green" :
                                                             inscripcion.Estado == "Desaprobado" ? "status-red" :
                                                             "status-yellow")"></span>
                                                         @inscripcion.Estado
