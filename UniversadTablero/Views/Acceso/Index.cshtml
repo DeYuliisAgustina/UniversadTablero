@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href="~/Content/css/Index.css" rel="stylesheet" />
+    <title>Universidad - Inicio</title>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-form">
+            <span class="title">Bienvenido</span>
+            <p class="subtitle">Sistema de Gestión Universitaria</p>
+            <div class="button">
+                <a href="@Url.Action("Login" , "Acceso")">
+                    <input type="button" value="Iniciar Sesión" />
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

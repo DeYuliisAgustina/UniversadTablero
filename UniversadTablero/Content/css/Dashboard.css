@@ -1,0 +1,250 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    padding: 1.5rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+    .header h1 {
+        font-size: 1.875rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+    }
+
+    .header p {
+        color: #6b7280;
+    }
+
+/* Tabs Container */
+.tabs-container {
+    position: relative;
+}
+
+/* Tab System */
+.tab-radio {
+    display: none;
+}
+
+/* Navigation */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tab {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem;
+    background-color: #e5e7eb;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+    .tab:hover {
+        background-color: #d1d5db;
+    }
+
+#tab1:checked ~ .nav-container .tabs label[for="tab1"],
+#tab2:checked ~ .nav-container .tabs label[for="tab2"],
+#tab3:checked ~ .nav-container .tabs label[for="tab3"],
+#tab4:checked ~ .nav-container .tabs label[for="tab4"],
+#tab5:checked ~ .nav-container .tabs label[for="tab5"] {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Search */
+.search-container {
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-input {
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    width: 300px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+.search-select {
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+#tab1:checked ~ .content #profesoresContent,
+#tab2:checked ~ .content #materiasContent,
+#tab3:checked ~ .content #alumnosContent,
+#tab4:checked ~ .content #notasContent,
+#tab5:checked ~ .content #AlumnoMateriasContent {
+    display: block !important;
+}
+
+/* Card */
+.card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    color: #1f2937;
+}
+
+    .card-header h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+.card-body {
+    padding: 1.5rem;
+    overflow-x: auto;
+}
+
+/* Tabla mejorada */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+th, td {
+    padding: 1rem;
+}
+
+th {
+    background-color: #3b82f6;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+    color: white;
+}
+
+td {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.2s ease;
+    color: #4b5563;
+}
+
+tr:hover td {
+    background-color: #f3f4f6;
+}
+
+/* Etiquetas de estado mejoradas */
+.estado-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-green {
+    background-color: #34D399;
+}
+
+.status-yellow {
+    background-color: #FBBF24;
+}
+
+.status-red {
+    background-color: #EF4444;
+}
+
+/* Leyenda mejorada */
+.inline-legend {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 1rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab {
+        flex: 1;
+        text-align: center;
+    }
+
+    .search-container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+}

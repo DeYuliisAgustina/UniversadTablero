@@ -1,0 +1,222 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Universitario</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="~/Content/css/Dashboard.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="min-h-screen">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1>Dashboard Universitario</h1>
+                <p>Sistema de gestión académica</p>
+            </div>
+
+            <!-- Tabs Container - Nueva estructura -->
+            <div class="tabs-container">
+                <!-- Radio Buttons -->
+                <input type="radio" name="tabs" id="tab1" checked class="tab-radio">
+                <input type="radio" name="tabs" id="tab2" class="tab-radio">
+                <input type="radio" name="tabs" id="tab3" class="tab-radio">
+                <input type="radio" name="tabs" id="tab4" class="tab-radio">
+                <input type="radio" name="tabs" id="tab5" class="tab-radio">
+
+                <!-- Navigation -->
+                <div class="nav-container">
+                    <div class="tabs">
+                        <label for="tab1" class="tab">Profesores</label>
+                        <label for="tab2" class="tab">Materias</label>
+                        <label for="tab3" class="tab">Alumnos</label>
+                        <label for="tab4" class="tab">Notas</label>
+                        <label for="tab5" class="tab">Inscripciones</label>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="content">
+                    <!-- Profesores -->
+                    <div class="tab-content" id="profesoresContent">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Profesores</h2>
+                            </div>
+                            <div class="card-body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>DNI</th>
+                                            <th>Email</th>
+                                            <th>Teléfono</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var profesor in ViewBag.ListaProfesores)
+                                        {
+                                            <tr>
+                                                <td>@profesor.NombreyApellido</td>
+                                                <td>@profesor.DNI</td>
+                                                <td>@profesor.Correo</td>
+                                                <td>@profesor.Telefono</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Materias -->
+                    <div class="tab-content" id="materiasContent">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Materias</h2>
+                            </div>
+                            <div class="card-body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Profesor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var materia in ViewBag.ListaMaterias)
+                                        {
+                                            <tr>
+                                                <td>@materia.Nombre</td>
+                                                <td>@materia.Descripcion</td>
+                                                <td>@materia.Profesor.NombreyApellido</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alumnos -->
+                    <div class="tab-content" id="alumnosContent">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Alumnos</h2>
+                            </div>
+                            <div class="card-body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>NombreyApellido</th>
+                                            <th>DNI</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var alumno in ViewBag.ListaAlumnos)
+                                        {
+                                            <tr>
+                                                <td>@alumno.NombreyApellido</td>
+                                                <td>@alumno.DNI</td>
+                                                <td>@alumno.Correo</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notas -->
+                    <div class="tab-content" id="notasContent">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Notas</h2>
+                            </div>
+                            <div class="card-body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Alumno</th>
+                                            <th>Materia</th>
+                                            <th>Nota</th>
+                                            <th>Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var nota in ViewBag.ListaNotas)
+                                        {
+                                            <tr>
+                                                <td>@nota.Alumno.NombreyApellido</td>
+                                                <td>@nota.Materia.Nombre</td>
+                                                <td>@nota.Valor</td>
+                                                <td>@nota.Fecha</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inscripciones y Semaforización -->
+                    <div class="tab-content" id="AlumnoMateriasContent">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Inscripciones</h2>
+                                <!----Leyenda con semaforización-->
+                                <div class="inline-legend">
+                                    <span class="legend-item">
+                                        <span class="status-dot status-green"></span>Aprobado (6-10)
+                                    </span>
+                                    <span class="legend-item">
+                                        <span class="status-dot status-yellow"></span>Regular (4-5)
+                                    </span>
+                                    <span class="legend-item">
+                                        <span class="status-dot status-red"></span>Desaprobado (1-3)
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Estado</th>
+                                            <th>Alumno</th>
+                                            <th>Materia</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var inscripcion in ViewBag.ListaAlumnoMaterias)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="estado-cell"> <!--la clase status-dot sirve para darle color al estado--> 
+                                                        <span class="status-dot @(inscripcion.Estado == "Aprobado" ? "status-green" : 
+                                                            inscripcion.Estado == "Desaprobado" ? "status-red" :
+                                                            "status-yellow")"></span>
+                                                        @inscripcion.Estado
+                                                    </div>
+                                                </td>
+                                                <td>@inscripcion.Alumno.NombreyApellido</td>
+                                                <td>@inscripcion.Materia.Nombre</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

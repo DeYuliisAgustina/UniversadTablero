@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Registration Form</title>
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <!-- Estilos -->
+    <link href="~/Content/css/Login.css" rel="stylesheet" />
+    <script src="~/Content/JS/Login.js" asp-append-version="true"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="forms">
+            <!-- Formulario de Login -->
+            <div class="form login">
+                <span class="title">Login</span>
+                <form action="@Url.Action("Login","Acceso")" method="post">
+                    <div class="input-field">
+                        <input type="text" name="Correo" class="form-control input_user" placeholder="Ingresa tu email" required />
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="Clave" class="password" placeholder="Ingresa tu contraseña" required />
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+                    <div class="input-field button">
+                        <input type="submit" value="Login" />
+                    </div>
+                </form>
+                <div class="login-signup">
+                    <span class="text">
+                        ¿No tienes cuenta?
+                        <a href="@Url.Action("Registrar","Acceso")" class="text signup-link">
+                            Registrate Ahora
+                        </a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Formulario de Registro -->
+            <div class="form signup">
+                <span class="title">Registro</span>
+                <form action="@Url.Action("Registrar","Acceso")" method="post">
+                    <div class="input-field">
+                        <input type="text" name="Correo" placeholder="Ingresa tu email" required />
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="Clave" class="password" placeholder="Crea una contraseña" required />
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="ConfirmarClave" class="password" placeholder="Confirma contraseña" required />
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+                    <div class="input-field button">
+                        <input type="submit" value="Registrarse" />
+                    </div>
+                </form>
+                <div class="login-signup">
+                    <span class="text">
+                        ¿Ya tienes una cuenta? <a href="@Url.Action("Login","Acceso")" class="text login-link">Ingresa ahora</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="~/js/Login.js" asp-append-version="true"></script>
+</body>
+</html>
