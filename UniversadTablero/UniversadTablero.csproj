@@ -135,6 +135,7 @@
     <Compile Include="Service\ValidarSesionAtributte.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BD\Universidad.sql" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
